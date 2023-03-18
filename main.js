@@ -28,7 +28,8 @@ $(function() {
 
 	// **Tasklength**
     // Length of the group introduction task in milliseconds. Can be changed to any number (in ms). Default: 180000 (3min)
-    settings.tasklength = 180000;
+    //settings.tasklength = 180000;    // Original time
+    settings.tasklength = 10000; // REMOVE ME, testing time so not waiting for whole study time
 
 
 	// **Number** **of** **"likes"**
@@ -206,16 +207,18 @@ $(function() {
   			init_task();
   	});
   }
-  function DeaktiviereLike(){
-	  	 setTimeout(function(){ 
-    $('.btn-like').attr("disabled", true);
-	alert("Die Zeit ist abgelaufen. Bitte kehren Sie nun zum Fragebogen zurück."); }, 2000);
-  // The time is up can you plese fill out the question back.
-  }
-  function DeaktiviereDisLike(){
-	setTimeout(function(){   
-    $('.btn-Dislike').attr("disabled", true);}, 3000);
-  }
+
+  // UNSURE IF NEEDED? It just disables the like/dislike buttons and notifies the user that the time is up.
+  // function DeaktiviereLike(){
+	//   	 setTimeout(function(){ 
+  //   $('.btn-like').attr("disabled", true);
+	// alert("Die Zeit ist abgelaufen. Bitte kehren Sie nun zum Fragebogen zurück."); }, 2000);
+  // // The time is up can you plese fill out the question back.
+  // }
+  // function DeaktiviereDisLike(){
+	// setTimeout(function(){   
+  //   $('.btn-Dislike').attr("disabled", true);}, 3000);
+  // }
 
   // **Slide:** **Task**
   function init_task() {
@@ -223,14 +226,15 @@ $(function() {
     $('#task').show();
 
 	shortcut.add("Backspace",function() {});
-
+  
+    // UNSURE IF NEEDED? It just disables the like/dislike buttons once the time is up.
   	jQuery("#countdown").countDown({
   		startNumber: window.settings.tasklength/1000, // in seconds
   		callBack: function(me) {
   		console.log('over');
         $('#timer').text('00:00');
-        DeaktiviereLike();
-        DeaktiviereDisLike();	
+        //DeaktiviereLike();
+        //DeaktiviereDisLike();	
   		}
   	});
 
