@@ -90,12 +90,12 @@ $(function() {
 
   		if(uname == "") {
   			error = 1;
-  			errormsg = 'Bitte füllen sie das Eingabefeld aus';
+  			errormsg = 'Please enter text';
   			uname = "undefined";
   		}
   		if(not_alphanumeric(uname)) {
   			error = 1;
-  			errormsg = 'Bitte verwenden Sie nur Buchstaben (und keine Leerzeichen)';
+  			errormsg = 'Please only letters (and no spaces)';
   		}
 
   		if(error == 0) {
@@ -134,7 +134,7 @@ $(function() {
   			window.avatarexport = /avatar_([^\s]+)/.exec(window.avatar)[1];
     			init_text();
     		} else {
-    			alertify.log("Bitte wählen Sie ein Bild aus","error");
+    			alertify.log("Please select an avatar","error");
     		}
     	});
 
@@ -146,7 +146,7 @@ $(function() {
   	$('#text').show();
 
   	$("#description").keyup(function(){
-  	  $("#count").text("Verbleibende Zeichen: " + (400 - $(this).val().length));
+  	  $("#count").text("Characters left: " + (400 - $(this).val().length));
   	});
 
   	$('#submit_text').on('click',function() {
@@ -154,17 +154,17 @@ $(function() {
   		var error = 0;
   		if($('#description').val() == "") {
   			error = 1;
-  			errormsg = 'Bitte füllen Sie das Eingabefeld aus';
+  			errormsg = 'Please enter text';
   		}
   		if($('#description').val() !== "" && $('#description').val().length < 140) {
 
   			error = 1;
-  			errormsg = 'Bitte schreiben Sie noch ein wenig mehr';
+  			errormsg = 'Please write a bit more';
 			}
   		if($('#description').val().length > 401) {
 
   			error = 1;
-  			errormsg = 'Bitte geben Sie weniger Text ein';
+  			errormsg = 'Please enter less text';
   		}
   		if(error == 0) {
   			$('#text').hide();
@@ -210,6 +210,7 @@ $(function() {
 	  	 setTimeout(function(){ 
     $('.btn-like').attr("disabled", true);
 	alert("Die Zeit ist abgelaufen. Bitte kehren Sie nun zum Fragebogen zurück."); }, 2000);
+  // The time is up can you plese fill out the question back.
   }
   function DeaktiviereDisLike(){
 	setTimeout(function(){   
@@ -285,7 +286,7 @@ $(function() {
   			times[i] = +times[i];
 
 			if(times[i]==10000){
-				themsg = usernames[i] + " gefällt deine Beschreibung";
+				themsg = usernames[i] + " liked your post";
 				setTimeout(function(themsg) {
 					that.text(parseInt(that.text()) + 1);
 					alertify.success(themsg)
@@ -305,7 +306,7 @@ $(function() {
 	$('.usersDislikes').each(function(){
 		if(times==11111){
 					var that = $(this);
-					themsg = usernames + " gefällt deine Beschreibung nicht";
+					themsg = usernames + " disliked your post";
 					setTimeout(function(themsg) {
 					that.text(parseInt(that.text()) + 1);
 					alertify.error(themsg)
@@ -607,7 +608,7 @@ $(function() {
   // Prevent that participants accidentally exit the experiment by disabling F5 and backspace keys
   shortcut.add("f5",function() {});
   $(window).bind('beforeunload', function(){
-    return 'Sind Sie sicher, dass Sie das Experiment vorzeitig beenden möchten?';
+    return 'Are you sure you want to quit the experiment completely?';
   });
 
   // Set Settings, get Participant No. and Condition No.
