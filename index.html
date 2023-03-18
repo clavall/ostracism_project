@@ -100,11 +100,11 @@ You can edit the instructions text for entering usernames below.
 
 */
 -->
-	<h3>Bitte geben Sie Ihren Namen ein</h3>
-	Sie können Ihren Vornamen, Initialen oder einen Spitznamen verwenden.<br><br>
+  <h3>Please enter your name</h3>
+  Could be your first name, nickname, or initials<br><br>
 
 	<input type="text" id="username"  autocomplete="off" /><br>	<br>
-	<button type="submit"  id="submit_username">Weiter</button>
+	<button type="submit"  id="submit_username">Submit</button>
 </div>
 
 
@@ -118,11 +118,11 @@ You can edit the instructions text for entering usernames below.
 You can edit the instructions text. The text "Your choice of avatar will not be recorded or analyzed" depends on whether you record the choice of avatar.
 
 */
--->	<h3>Bitte wählen Sie einen Avatar aus</h3>
-	Dieser Avatar wird Sie während der Vorstellungsrunde repräsentieren.
+-->	<h3>Please select an avatar</h3>
+	This avatar will represent you during the group task, but will not be linked to any of your responses. <br>Your choice of avatar will not be recorded or analyzed.
 	<br><br>
 	<div class="avatars"></div>
-	<br><button type="submit"  id="submit_avatar">Weiter</button>
+	<br><button type="submit"  id="submit_avatar">Submit</button>
 	<br><br>
 </div>
 
@@ -136,13 +136,13 @@ You can edit the instructions text. The text "Your choice of avatar will not be 
 You can edit the instructions text.
 
 */
--->	<h3>Bitte verfassen Sie nun Ihre Profilbeschreibung, in der Sie sich dem Rest der Gruppe vorstellen.</h3>
-
- Schreiben Sie etwas, dass Sie gerne über sich erzählen möchten – irgendetwas, dass Sie teilen möchten.
-	<br><br>
+-->	<h3>Please introduce yourself </h3>
+	Please write a paragraph in which you introduce yourself to the rest of the group. <br>
+	Write something you would like to tell about yourself - anything you want to share.
+	<br><br>	
 	<textarea id="description" autocomplete="off" /></textarea><br>
 	<span id="count">Verbleibende Zeichen: 400</span><br><br>
-	<button type="submit" id="submit_text">Weiter</button>
+	<button type="submit" id="submit_text">Submit</button>
 </div>
 
 
@@ -156,24 +156,18 @@ You can edit the instructions text.
 You can edit the instructions text. The prompt to try and form an impression of the other players is recommended in all ostacism paradigms. Defining the action of "liking" is also recommended. The information regarding task duration can be adjusted to match the actual duration you have set.
 
 */
--->  <h3>Anweisung zur Vorstellungsrunde</h3>
-
-Gleich werden Sie zur Vorstellungsrunde weitergeleitet, in der Sie die Profile der anderen
-Personen sehen können. Ihre Aufgabe ist nun, die Profilbeschreibungen der anderen zu lesen und darauf zu reagieren.
- Dabei können Sie zwischen einem "Like"- und einem "Dislike"- Button auswählen.
- <br><br>
-
-Versuchen Sie bitte, sich einen Eindruck von den anderen Nutzern und Nutzerinnen zu machen, auch wenn die Interaktion minimal ist.
-Versuchen Sie, sich die anderen im realen Leben vorzustellen – wie sie vielleicht aussehen oder klingen, was für Menschen sie sind, wie Sie mit ihnen auskommen würden.
-<br><br>
-
-Für diese Aufgabe haben Sie 3 Minuten Zeit. Sie ist für die Studie sehr wichtig.
-Seien Sie also bitte aufmerksam und verlassen Sie nicht die Internetseite oder wenden sich anderen Dingen zu. Danach folgt ein kurzer Fragebogen, der auch Fragen über die anderen Personen enthält.
-<br><br>
-Wenn Sie diese Anweisungen verstanden haben, können Sie fortfahren, indem Sie auf "Log in" klicken.<br>
-
-
-
+-->  <h3>Group Introduction</h3>
+  Soon after connecting, you should be able to see the other people's descriptions. <br>
+  You can read and react to the short introduction they wrote about themselves, by <br>
+  clicking a "like" button, similar to the "like" button on Facebook ("favorite" on Twitter,<br> 
+  &hearts; in Tumblr and Instagram, etc.) <br>
+  <br>
+  Even though your interaction is minimal, please try to form an impression of the <br>
+  people in the group. Try to imagine them in real life - how they might look <br>
+  or sound, what kind of people they are, how you would get along with them.
+  <br><br>The task will last 3 minutes and is very important to the study, so please be attentive,
+  <br>without switching pages, or doing unrelated tasks. Questions about the other people <br>might follow.
+  <br><br><b>If these instructions are clear, you can proceed to log in.</b><br>
   <br>
   <button type="submit"  id="submit_fb_intro">Log in</button>
 </div>
@@ -181,13 +175,13 @@ Wenn Sie diese Anweisungen verstanden haben, können Sie fortfahren, indem Sie a
 
 
 <div id="fb_login" style="display:none;" class="instr">
-  <h3>Verbindung wird hergestellt</h3>
-  Bitte warten Sie, während die Verbindung zu den anderen Teilnehmern und Teilnehmerinnen Ihrer Gruppe hergestellt wird.<br><br>
+  <h3>Establishing connection</h3>
+  Please wait while you are being connected to the other participants in your group.<br><br>
   <img class="load" src='ajax-loader.gif' id="loader">
   <div id="msg_all_done" style="display:none;">
   <br>
-  	<b>Alle Teilnehmer/innen sind nun verbunden und Sie können beginnen.</b><br><br>
-  	<button type="submit"  id="submit_fb_login">Weiter</button>
+    <b>All participants are now connected and you are ready to proceed.</b><br><br>
+    <button type="submit"  id="submit_fb_login">Continue</button>
   </div>
 </div>
 
@@ -202,12 +196,9 @@ You can edit the instructions text.
 */
 -->
 <div id="task" style="display:none;">
-	<div id="countdown"><span class="secs" style="display: none;"></span>Sie können auf den "Like"- Button klicken, wenn Ihnen eine Beschreibung gefallen hat. Wenn sie Ihnen nicht gefallen hat, klicken Sie auf den "Dislike"- Button.<br><br>
-	<b>Nach Ablauf der Zeit kehren Sie bitte wieder zum Fragebogen zurück.</b> <br><br>
-	<b>Verbleibende Zeit:</b> <br><span id="timer" class="cntr label label-info"></span>
+	<div id="countdown"><span class="secs" style="display: none;"></span>You can click "Like" if you have enjoyed somebody's description<br><br>time left:<br><span id="timer" class="cntr label label-info"></span>
 	<br>
-	
-<!--	<button type="submit" id='final-continue' style="display:none;">Weiter</button> -->
+	<button type="submit" id='final-continue' style="display:none;">Continue</button>	
 	</div>
 </div>
 
