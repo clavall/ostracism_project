@@ -28,7 +28,8 @@ $(function() {
 
 	// **Tasklength**
     // Length of the group introduction task in milliseconds. Can be changed to any number (in ms). Default: 180000 (3min)
-    settings.tasklength = 180000;
+    settings.tasklength = 180000;    // Original time
+    //settings.tasklength = 10000; // REMOVE ME, testing time so not waiting for whole study time
 
 
 	// **Number** **of** **"likes"**
@@ -36,26 +37,28 @@ $(function() {
 	// In cases with only 1 "like," a second "like" is added with time point 9999999. This "like" is added for programming purposes and is never executed, as it is outside the task time
 
     // In condition 1, the participant will receive 1 like at the following timepoint (in ms). Default: [12000, 9999999]
-    settings.condition_1_likes = [12000, 9999999];
+  //  settings.condition_1_likes = [12000, 9999999];
+    settings.condition_1_likes = [12000, 9999999]; 
 
     // In condition 2, user will receive 6 likes at the following timepoints (in ms). Default: [10000, 15000,35000,80000,1320000,150000]
     //settings.condition_2_likes = [10000,15000,35000,80000,100000,132000,150000];
     settings.condition_2_likes = [10000,35000,80000,100000,132000,150000];
-    settings.condition_2_Dislikes = [10000,15000,35000,80000,100000,13000];
-
+    //settings.condition_2_Dislikes = [10000,15000,35000,80000,100000,13000];
     // In condition 3, user will receive 9 likes at the following timepoints (in ms). Default: [10000, 11000,15000,35000,80000,100000,110000,150000,20000]
-  //  settings.condition_3_likes = [10000,11000,15000,35000,80000,100000,110000,150000,20000];
+    settings.condition_3_likes = [10000,11000,15000,35000,80000,100000,110000,150000,20000];
+
 
 	// **Others' likes**
 	// To keep the total distribution of "likes" constant across conditions, The "likes" received by one group member can be adjusted according to the participant's. By default, the other group member receives 9 "likes" in the participant-ostracism condition, 5 in the participant-inclusion condtion, and 1 in the participant-overinclusion condtion.
-  settings.condition_1_adjusted_likes = [12000,14000,15000,35000,80000,100000,110000,150000,20000]; // 9
+//	settings.condition_1_adjusted_likes = [12000,14000,15000,35000,80000,100000,110000,150000,20000]; // 9
 	settings.condition_2_adjusted_likes = [12000,14000,15000,35000,80000]; // 5
   settings.condition_2_adjusted_Dislikes = [12000,14000,15000,35000,80000]; // 5
 //	settings.condition_3_adjusted_likes = [12000, 9999999]; //1
 
     // Usernames by which the participant will receive "likes"
 	// If group member names are changed, these should be changed accordingly.
-    settings.likes_by = ['John','AncaD','Nick','Sarah','Laura','Jenny','Georgeee','Hannah','Ky'];
+  //'Heather','Georgeee'
+    settings.likes_by = ['Hannah','Georgeee','Sarah','Arjen','Jenny','AncaD','Laura','John','Ky'];
     settings.Dislikes_by = ['John','AncaD','Sarah','Arjen','Jenny','Georgeee','Laura','Hannah','Ky'];
   }
 
@@ -90,12 +93,12 @@ $(function() {
 
   		if(uname == "") {
   			error = 1;
-  			errormsg = 'Bitte füllen sie das Eingabefeld aus';
+  			errormsg = 'Please enter text';
   			uname = "undefined";
   		}
   		if(not_alphanumeric(uname)) {
   			error = 1;
-  			errormsg = 'Bitte verwenden Sie nur Buchstaben (und keine Leerzeichen)';
+  			errormsg = 'Please only letters (and no spaces)';
   		}
 
   		if(error == 0) {
@@ -134,7 +137,7 @@ $(function() {
   			window.avatarexport = /avatar_([^\s]+)/.exec(window.avatar)[1];
     			init_text();
     		} else {
-    			alertify.log("Bitte wählen Sie ein Bild aus","error");
+    			alertify.log("Please select an avatar","error");
     		}
     	});
 
@@ -146,7 +149,7 @@ $(function() {
   	$('#text').show();
 
   	$("#description").keyup(function(){
-  	  $("#count").text("Verbleibende Zeichen: " + (400 - $(this).val().length));
+  	  $("#count").text("Characters left: " + (400 - $(this).val().length));
   	});
 
   	$('#submit_text').on('click',function() {
@@ -154,17 +157,17 @@ $(function() {
   		var error = 0;
   		if($('#description').val() == "") {
   			error = 1;
-  			errormsg = 'Bitte füllen Sie das Eingabefeld aus';
+  			errormsg = 'Please enter text';
   		}
   		if($('#description').val() !== "" && $('#description').val().length < 140) {
 
   			error = 1;
-  			errormsg = 'Bitte schreiben Sie noch ein wenig mehr';
+  			errormsg = 'Please write a bit more';
 			}
   		if($('#description').val().length > 401) {
 
   			error = 1;
-  			errormsg = 'Bitte geben Sie weniger Text ein';
+  			errormsg = 'Please enter less text';
   		}
   		if(error == 0) {
   			$('#text').hide();
@@ -206,15 +209,18 @@ $(function() {
   			init_task();
   	});
   }
- function DeaktiviereLike(){
-	  	 setTimeout(function(){ 
-    $('.btn-like').attr("disabled", true);
-	alert("Die Zeit ist abgelaufen. Bitte kehren Sie nun zum Fragebogen zurück."); }, 2000);
-  }
-  function DeaktiviereDisLike(){
-	setTimeout(function(){   
-    $('.btn-Dislike').attr("disabled", true);}, 3000);
-  }
+
+  // UNSURE IF NEEDED? It just disables the like/dislike buttons and notifies the user that the time is up.
+  // function DeaktiviereLike(){
+	//   	 setTimeout(function(){ 
+  //   $('.btn-like').attr("disabled", true);
+	// alert("Die Zeit ist abgelaufen. Bitte kehren Sie nun zum Fragebogen zurück."); }, 2000);
+  // // The time is up can you plese fill out the question back.
+  // }
+  // function DeaktiviereDisLike(){
+	// setTimeout(function(){   
+  //   $('.btn-Dislike').attr("disabled", true);}, 3000);
+  // }
 
   // **Slide:** **Task**
   function init_task() {
@@ -222,14 +228,15 @@ $(function() {
     $('#task').show();
 
 	shortcut.add("Backspace",function() {});
-
+  
+    // UNSURE IF NEEDED? It just disables the like/dislike buttons once the time is up.
   	jQuery("#countdown").countDown({
   		startNumber: window.settings.tasklength/1000, // in seconds
   		callBack: function(me) {
-  			console.log('over');
+  		console.log('over');
         $('#timer').text('00:00');
-        DeaktiviereLike();
-        DeaktiviereDisLike();
+        //DeaktiviereLike();
+        //DeaktiviereDisLike();	
   		}
   	});
 
@@ -272,26 +279,111 @@ $(function() {
     }
     reorder();
 
+    //Function Test
+
+	// function LikeDisLike(){
+	// 	  $('.userslikes').each(function(){
+	// 	var that = $(this);
+  // 		var usernames = $(this).data('usernames').split(",");
+  // 		var times = $(this).data('likes').split(",");
+
+	// 	for(var i=0; i<times.length; i++)
+  // 		{
+  // 			times[i] = +times[i];
+
+	// 		if(times[i]==10000){
+	// 			themsg = usernames[i] + " liked your post";
+	// 			setTimeout(function(themsg) {
+	// 				that.text(parseInt(that.text()) + 1);
+	// 				alertify.success(themsg)
+	// 			}, times[i], themsg);
+
+	// 		}
+
+	// 		else {
+	// 			DislikeFunction(times[i],usernames[i]);
+	// 		}
+	// 	}
+
+	// 	  });
+	// }
+
+	// function DislikeFunction(times,usernames){
+	// $('.usersDislikes').each(function(){
+	// 	if(times==11111){
+	// 				var that = $(this);
+	// 				themsg = usernames + " disliked your post";
+	// 				setTimeout(function(themsg) {
+	// 				that.text(parseInt(that.text()) + 1);
+	// 				alertify.error(themsg)
+	// 			}, times, themsg);
+
+	// 	//ThemsgN = usernames+ " Disliked your post";
+	// 	//that.text(parseInt(that.text()) + 1);
+	// 	//alertify.error(ThemsgN)
+	// 	}
+
+	// });
+	// }
+
+	// LikeDisLike();
+
+/*
     // When user receives likes
 	  $('.usersDislikes').each(function() {
   		var that = $(this);
   		var usernames = $(this).data('usernames').split(",");
   		var times = $(this).data('likes').split(",");
-
   		for(var i=0; i<times.length; i++)
   		{
   			times[i] = +times[i];
-
   			themsg = usernames[i] + " gefällt deine Beschreibung nicht";
-
-
   			setTimeout(function(themsg) {
   				that.text(parseInt(that.text()) + 1);
   				alertify.error(themsg)
-
   			}, times[i], themsg);
   		}
 	  });
+*/
+// When user receives likes
+$('.userslikes').each(function() {
+  var that = $(this);
+  var usernames = $(this).data('usernames').split(",");
+  var times = $(this).data('likes').split(",");
+
+  for(var i=0; i<times.length; i++) 
+  { 
+    times[i] = +times[i]; 
+    
+    themsg = usernames[i] + " liked your post";
+
+    setTimeout(function(themsg) {
+      that.text(parseInt(that.text()) + 1);
+      alertify.success(themsg)
+
+    }, times[i], themsg);
+  } 		
+});
+
+// // When user receives dislikes
+// $('.usersDislikes').each(function() {
+//   var that = $(this);
+//   var usernames = $(this).data('usernames').split(",");
+//   var times = $(this).data('Dislikes').split(",");
+
+//   for(var i=0; i<times.length; i++) 
+//   { 
+//     times[i] = +times[i]; 
+    
+//     themsg = usernames[i] + " disliked your post";
+
+//     setTimeout(function(themsg) {
+//       that.text(parseInt(that.text()) + 1);
+//       alertify.error(themsg)
+
+//     }, times[i], themsg);
+//   } 		
+// });
 
     // When others receive likes
 	  $('.otherslikes').each(function() {
@@ -348,8 +440,8 @@ $(function() {
 	  $('.btn-like').on('click', function() {
 		  $(this).prev().text(parseInt($(this).prev().text()) + 1);
       // Like buttons can only be clicked once
-		  $(this).attr("disabled", true);
-      $(this).parent().parent().find('.btn-Dislike').attr("disabled", true);
+		  //$(this).attr("disabled", true);
+      //$(this).parent().parent().find('.btn-Dislike').attr("disabled", true);
 	  });
 
 
@@ -357,8 +449,8 @@ $(function() {
     $('.btn-Dislike').on('click', function() {
     	$(this).prev().text(parseInt($(this).prev().text()) + 1);
       // Like buttons can only be clicked once
-    	$(this).attr("disabled", true);
-      $(this).parent().parent().find('.btn-like').attr("disabled", true);
+    	//$(this).attr("disabled", true);
+      //$(this).parent().parent().find('.btn-like').attr("disabled", true);
     });
 
     // Initalize Masonry plugin
@@ -557,7 +649,7 @@ $(function() {
   // Prevent that participants accidentally exit the experiment by disabling F5 and backspace keys
   shortcut.add("f5",function() {});
   $(window).bind('beforeunload', function(){
-    return 'Sind Sie sicher, dass Sie das Experiment vorzeitig beenden möchten?';
+    return 'Are you sure you want to quit the experiment completely?';
   });
 
   // Set Settings, get Participant No. and Condition No.
